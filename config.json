@@ -1,0 +1,10 @@
+{
+    "config": {
+        "path": "URLs.json",
+        "tab_folder":"Generated HTML files"
+    },
+    "default_config": {
+        "path": "URLs.json",
+        "tab_folder":"Generated HTML files"
+    }
+}

@@ -189,26 +189,40 @@ def get_valid_path(
         file_name:Optional[str] = None, 
         extension:str = 'html', 
         default_name:str = 'New file',
-        url_list:Optional[str] = None
+        url_list:Optional[str] = None,
+        overwrite = False
     ):
     if not exists(destination):
             mkdir(destination)
             print(f'New directory \"{destination}\" has been created.')
             
-    if not file_name or exists(destination + "/" + file_name + '.' + extension):
+    if exists(destination + "/" + file_name + '.' + extension) or not file_name:
         if set(load_group_urls(path, ignore_not_found = True)) == set(url_list):
             print('The file you are trying to create already exists with its contents.')
             return None
+        elif overwrite:
+            pass # exits the if and filename stays the same
         else:
             file_name = new_file_name(destination, extension, default_name)
     
     path = destination + "/" + file_name + '.' + extension
     return path
 
-def create_group_file(url:list[str], destination:str = 'Generated HTML files', file_name:str = 'New file'):
+def create_group_file(
+    url:list[str], 
+    destination:str = 'Generated HTML files', 
+    file_name:str = 'New file', 
+    overwrite = False
+):
     
     text = group_text(url)
-    path = get_valid_path(destination, file_name, default_name=file_name, url_list=url)
+    path = get_valid_path(
+        destination, 
+        file_name, 
+        default_name=file_name, 
+        url_list=url, 
+        overwrite=overwrite
+    )
     
     if path:
         with open(path,'w') as f:
