@@ -31,7 +31,9 @@ def url_works(url:str) -> bool:
 
 def new_file_name(directory:str, extension:str, default_name = 'New file'):
     """
-    returns a filename that is not in the given directory
+    given a base string, returns a string that represents a filename that is 
+    not being used in the given directory. (so it can create a new file with a
+    name that resembles the base string)
     """
     
     possible_file_name = default_name
@@ -81,6 +83,9 @@ def url_from_html_redirect(file_path, ignore_not_found = False):
         return None
 
 def from_url_to_html_file(url:str, destination:str = 'Generated HTML files', file_name:Optional[str] = None):
+    """
+    Creates a new html file that opens a set of tabs.
+    """
     text = html_template.format(url = url)
     if url_works(url):
 

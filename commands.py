@@ -34,7 +34,7 @@ def load_data(file_path:str) -> Optional[dict]:
 
 def commit_data(file_path:str, data:dict):
     """
-    write the given data toa JSON file.
+    write the given data to a JSON file.
     """
     try:
         with open(file_path, 'w', encoding='utf-8') as f:
